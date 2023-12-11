@@ -111,7 +111,7 @@ export const bodyContent = [
         id:"project",
         content: [
             {
-                title:"fhmaula.com (v1)",
+                title:"fahimhm.github.io (v1)",
                 desc:"A portfolio site built with ReactJS and TailwindCSS.",
                 skillTag: [
                     "TailwindCSS", "ReactJS"
