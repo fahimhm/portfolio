@@ -44,11 +44,11 @@ export const headContent = [
             },
             {
                 id:"title",
-                content:"Data Analyst | Aspiring Freelance Web Developer",
+                content:"Data Analyst | Aspiring Freelance Web Front-end Developer",
             },
             {
                 id:"titleDesc",
-                content:"I analyze the business data, build PowerBI dashboard and ML model. Additionally I build accessible, simple and responsive website."
+                content:"Meticulously analyzing business data, craft insightful Data Viz dashboards, and implement machine learning modes. Besides, I'm developing an accessible, responsive website that embodies simplicity without compromising sophistication."
             },
         ],
     },
@@ -111,7 +111,7 @@ export const bodyContent = [
         id:"project",
         content: [
             {
-                title:"fahimhm.github.io (v1)",
+                title:"fahimworks.online (v1)",
                 desc:"A portfolio site built with ReactJS and TailwindCSS.",
                 skillTag: [
                     "TailwindCSS", "ReactJS"
