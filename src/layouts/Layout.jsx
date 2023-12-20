@@ -1,4 +1,4 @@
-import { LeftSection } from '../layouts';
+import { LeftSection, RightSection } from '../layouts';
 import PropTypes from 'prop-types';
 
 const Layout = (props) => (
@@ -9,6 +9,7 @@ const Layout = (props) => (
         <a href="" className='absolute left-0 top-0 block -translate-x-full rounded bg-gradient-to-br from-teal-400 via-blue-500 to-purple-600 px-4 py-3 text-sm font-bold uppercase tracking-widest text-white focus-visible:translate-x-0'>Skip to content</a>
         <div className='lg:flex lg:justify-between lg:gap-4'>
           <LeftSection titleName={props.titleName} shortDesc={props.shortDesc} longDesc={props.longDesc} />
+          <RightSection para01={props.para01} para02={props.para02} customComponent={props.customComponent} />
         </div>
       </div>
     </div>
@@ -19,6 +20,9 @@ Layout.propTypes = {
   titleName: PropTypes.string,
   shortDesc: PropTypes.string,
   longDesc: PropTypes.string,
+  para01: PropTypes.string,
+  para02: PropTypes.string,
+  customComponent: PropTypes.elementType,
 }
 
 export default Layout
