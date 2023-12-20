@@ -1,4 +1,4 @@
-import { fahim_portfolio } from "../assets"
+import { fahim_portfolio, card_image } from "../assets"
 
 export const navLinks = [
 	{
@@ -123,7 +123,7 @@ export const bodyContent = [
 				title: "Dummy: Blog Card Component",
 				desc: "This is frontend challenge I got from frontendpro.dev that ask me to create a simple Card Component.",
 				skillTag: ["TailwindCSS", "ReactJS"],
-				imageUrl: fahim_portfolio,
+				imageUrl: card_image,
 				pageUrl: "/first_project",
 			},
 			{
