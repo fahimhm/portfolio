@@ -1,5 +1,5 @@
 import { Footer } from "../components";
-import { TitleAndNav } from "../layouts";
+import { TitleAndNav } from ".";
 import PropTypes from "prop-types";
 
 const LeftSection = (props) => (

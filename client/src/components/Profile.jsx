@@ -1,5 +1,5 @@
 import { headContent } from '../constants';
-import { Navbar } from '../components';
+import { Navbar } from '.';
 
 const Profile = () => {
   const mainProfile = headContent.find((item) => item.id === 'mainHead');

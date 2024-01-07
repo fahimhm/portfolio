@@ -1,4 +1,4 @@
-import { LeftSection, RightSection } from '../layouts';
+import { LeftSection, RightSection } from '.';
 import PropTypes from 'prop-types';
 
 const Layout = (props) => (
