@@ -1,5 +1,5 @@
 import { headContent } from "../constants";
-import { Experience, Project, FooterMain } from "../components";
+import { Experience, Project, FooterMain } from ".";
 
 const MainComponent = () => {
   const mainProfile = headContent.find((item) => item.id === "secondHead");
