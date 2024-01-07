@@ -3,11 +3,11 @@ import { card_image, profiles } from "../assets";
 
 const Card = () => {
   return (
-    <div className="container w-[300px] h-[450px] overflow-hidden shadow-[0_35px_15px_-5px_rgba(15,23,42,0.6)] mx-auto my-auto bg-slate-100 rounded-lg">
+    <div className="container w-[300px] h-[450px] overflow-hidden mx-auto my-auto bg-slate-100 rounded-lg hover:shadow-2xl hover:shadow-indigo-500/50 hover:scale-105 transition">
       <div className="overflow-hidden h-1/3 w-full">
         <img
           src={card_image}
-          alt="image for card component"
+          alt="for card component"
           className="object-cover object-center h-full w-full"
         />
       </div>
