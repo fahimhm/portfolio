@@ -31,6 +31,7 @@ const FormFinanceTracker = () => {
       },
     });
     const txn = await response.json();
+    setTxns([...txns, txn]); // notes: this is spread syntax, spreads the elements of the txns and append the new elemet txn to the end of txns array. Ensures that the state variable txns is updated.
     setWallet("");
     setExpense("");
     setAmount("");
