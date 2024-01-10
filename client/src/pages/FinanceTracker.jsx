@@ -11,14 +11,14 @@ const FormFinanceTracker = () => {
   const [amount, setAmount] = useState();
   const [date, setDate] = useState();
 
-  const [txn, setTxn] = useState([]);
+  const [txns, setTxns] = useState([]);
 
   /**
    * @param {React.FormEvent} e
    */
-  async function handleCreateLog(e) {
+  async function handleCreateTxn(e) {
     e.preventDefault();
-    await fetch("http://localhost:3001/txn", {
+    const response = await fetch("http://localhost:3001/txn", {
       method: "POST",
       body: JSON.stringify({
         wallet,
@@ -30,17 +30,25 @@ const FormFinanceTracker = () => {
         "Content-Type": "application/json",
       },
     });
+    const txn = await response.json();
     setWallet("");
     setExpense("");
     setAmount("");
     setDate("");
   }
 
+  async function handleDeleteTxn(txnId) {
+    await fetch(`http://localhost:3001/txn/${txnId}`, {
+      method: "DELETE",
+    });
+    setTxns(txns.filter((txn) => txn._id !== txnId));
+  }
+
   useEffect(() => {
     async function fetchTxn() {
       const response = await fetch("http://localhost:3001/txn");
       const newTxn = await response.json();
-      setTxn(newTxn);
+      setTxns(newTxn);
     }
     fetchTxn();
   }, []);
@@ -56,7 +64,7 @@ const FormFinanceTracker = () => {
 
   return (
     <>
-      <form onSubmit={handleCreateLog}>
+      <form onSubmit={handleCreateTxn}>
         <label htmlFor="wallet" className={labelClass}>
           wallet
         </label>
@@ -143,12 +151,13 @@ const FormFinanceTracker = () => {
           </tr>
         </thead>
         <tbody>
-          {txn.map((item) => (
+          {txns.map((item) => (
             <tr key={item._id} className="hover:bg-slate-800">
               <td className="border border-slate-700 px-2">{formatDate(item.date)}</td>
               <td className="border border-slate-700 px-2">{item.wallet}</td>
               <td className="border border-slate-700 px-2">{item.expense}</td>
               <td className="border border-slate-700 px-2">{item.amount}</td>
+              <td className="border border-slate-700 px-2"><button onClick={() => handleDeleteTxn(item._id)}>X</button></td>
             </tr>
           ))}
         </tbody>
