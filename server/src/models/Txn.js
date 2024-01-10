@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 
 const TxnSchema = new Schema({
 	// txnid: ObjectId,
-	title: String,
 	wallet: String,
+	expense: String,
 	amount: String,
 	date: Date,
 });
