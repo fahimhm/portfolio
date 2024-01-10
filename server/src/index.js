@@ -16,12 +16,15 @@ app.use(cors({
 app.use(express.json());
 
 app.get("/txn", async (req, res) => {
-	// TODO: fetch all transaction data and send back to the user
-	// 1. how do we fetch the transaction from mongo?
 	const txn = await Txn.find();
-	// 2. how do we send back the array to the ui?
 	res.json(txn);
 });
+
+app.delete("/txn/:txnId", async (req, res) => {
+	const txnId = req.params.txnId;
+	const txn = await Txn.findByIdAndDelete(txnId);
+	res.json(txn);
+})
 
 app.post("/txn", async (req, res) => {
 	const newTxn = new Txn({
