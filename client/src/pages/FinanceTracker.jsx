@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Layout } from "../layouts";
+import { API_URL } from "../api/config";
 
 const FormFinanceTracker = () => {
   const inputClass =
@@ -18,7 +19,7 @@ const FormFinanceTracker = () => {
    */
   async function handleCreateTxn(e) {
     e.preventDefault();
-    const response = await fetch("http://localhost:3001/txn", {
+    const response = await fetch(`${API_URL}/txn`, {
       method: "POST",
       body: JSON.stringify({
         wallet,
@@ -39,7 +40,7 @@ const FormFinanceTracker = () => {
   }
 
   async function handleDeleteTxn(txnId) {
-    await fetch(`http://localhost:3001/txn/${txnId}`, {
+    await fetch(`${API_URL}/txn/${txnId}`, {
       method: "DELETE",
     });
     setTxns(txns.filter((txn) => txn._id !== txnId));
@@ -47,7 +48,7 @@ const FormFinanceTracker = () => {
 
   useEffect(() => {
     async function fetchTxn() {
-      const response = await fetch("http://localhost:3001/txn");
+      const response = await fetch(`${API_URL}/txn`);
       const newTxn = await response.json();
       setTxns(newTxn);
     }
