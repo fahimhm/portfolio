@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Layout } from "../layouts";
+import { API_URL } from "../api/config";
 
 const FormFinanceTracker = () => {
   const inputClass =
@@ -11,14 +12,14 @@ const FormFinanceTracker = () => {
   const [amount, setAmount] = useState();
   const [date, setDate] = useState();
 
-  const [txn, setTxn] = useState([]);
+  const [txns, setTxns] = useState([]);
 
   /**
    * @param {React.FormEvent} e
    */
-  async function handleCreateLog(e) {
+  async function handleCreateTxn(e) {
     e.preventDefault();
-    await fetch("http://localhost:3001/txn", {
+    const response = await fetch(`${API_URL}/txn`, {
       method: "POST",
       body: JSON.stringify({
         wallet,
@@ -30,17 +31,26 @@ const FormFinanceTracker = () => {
         "Content-Type": "application/json",
       },
     });
+    const txn = await response.json();
+    setTxns([...txns, txn]); // notes: this is spread syntax, spreads the elements of the txns and append the new elemet txn to the end of txns array. Ensures that the state variable txns is updated.
     setWallet("");
     setExpense("");
     setAmount("");
     setDate("");
   }
 
+  async function handleDeleteTxn(txnId) {
+    await fetch(`${API_URL}/txn/${txnId}`, {
+      method: "DELETE",
+    });
+    setTxns(txns.filter((txn) => txn._id !== txnId));
+  }
+
   useEffect(() => {
     async function fetchTxn() {
-      const response = await fetch("http://localhost:3001/txn");
+      const response = await fetch(`${API_URL}/txn`);
       const newTxn = await response.json();
-      setTxn(newTxn);
+      setTxns(newTxn);
     }
     fetchTxn();
   }, []);
@@ -56,7 +66,7 @@ const FormFinanceTracker = () => {
 
   return (
     <>
-      <form onSubmit={handleCreateLog}>
+      <form onSubmit={handleCreateTxn}>
         <label htmlFor="wallet" className={labelClass}>
           wallet
         </label>
@@ -143,12 +153,13 @@ const FormFinanceTracker = () => {
           </tr>
         </thead>
         <tbody>
-          {txn.map((item) => (
+          {txns.map((item) => (
             <tr key={item._id} className="hover:bg-slate-800">
               <td className="border border-slate-700 px-2">{formatDate(item.date)}</td>
               <td className="border border-slate-700 px-2">{item.wallet}</td>
               <td className="border border-slate-700 px-2">{item.expense}</td>
               <td className="border border-slate-700 px-2">{item.amount}</td>
+              <td className="border border-slate-700 px-2"><button onClick={() => handleDeleteTxn(item._id)}>X</button></td>
             </tr>
           ))}
         </tbody>
