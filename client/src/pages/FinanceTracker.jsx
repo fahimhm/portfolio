@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Layout } from "../layouts";
 import { API_URL } from "../api/config";
+import { formatDate } from "../components";
+import { Link } from "react-router-dom";
 
 const FormFinanceTracker = () => {
   const inputClass =
@@ -54,15 +56,6 @@ const FormFinanceTracker = () => {
     }
     fetchTxn();
   }, []);
-
-	const formatDate = (originalDate) => {
-		const date = new Date(originalDate);
-		const year = date.getFullYear();
-		const month = String(date.getMonth() + 1).padStart(2, '0');
-		const day = String(date.getDate()).padStart(2, '0');
-
-		return `${year}-${month}-${day}`;
-	};
 
   return (
     <>
@@ -160,6 +153,7 @@ const FormFinanceTracker = () => {
               <td className="border border-slate-700 px-2">{item.expense}</td>
               <td className="border border-slate-700 px-2">{item.amount}</td>
               <td className="border border-slate-700 px-2"><button onClick={() => handleDeleteTxn(item._id)}>X</button></td>
+              <td className="border border-slate-700 px-2"><Link to={`/txn/${item._id}`}>View</Link></td>
             </tr>
           ))}
         </tbody>

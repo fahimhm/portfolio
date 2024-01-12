@@ -41,4 +41,4 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 	app.listen(3001, () => {
 		console.log('Example app listening')
 	});
-})
+});
