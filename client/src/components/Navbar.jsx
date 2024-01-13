@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav className="nav hidden lg:block">
       <ul className="mt-16 w-max">
-        {navLinks.map((nav, index) => (
+        {navLinks.map((nav) => (
           <li key={nav.id}>
             <a
               href={`#${nav.id}`}

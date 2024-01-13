@@ -37,8 +37,18 @@ app.post("/txn", async (req, res) => {
 	res.json(createdTxn);
 });
 
+app.get("/txn/:txnId", async (req, res) => {
+	const txnId = req.params.txnId;
+	const txn = await Txn.findById(txnId);
+	if (!txn) {
+		res.status(404).json({message: "Transaction not found"});
+	} else {
+		res.json(txn);
+	}
+});
+
 mongoose.connect(process.env.MONGO_URL).then(() => {
 	app.listen(3001, () => {
 		console.log('Example app listening')
 	});
-})
+});
