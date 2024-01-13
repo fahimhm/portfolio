@@ -1,40 +1,37 @@
-import { useState, useEffect } from "react";
-// import { Layout } from "../layouts";
+import React from "react";
+import { useParams } from "react-router-dom";
 import { API_URL } from "../api/config";
 import { formatDate } from "../components";
-import { useNavigate, useParams } from "react-router-dom";
 
 const FinanceTransactionDetails = () => {
-  const { id } = useParams();
-  const [txn, setTxn] = useState({});
-  const navigate = useNavigate();
+  const { txnId } = useParams();
 
-  useEffect(() => {
-    const fetchTransaction = async () => {
-      try {
-        const response = await fetch(`${API_URL}/txn/${id}`);
-        const data = await response.json();
-        setTxn(data);
-      } catch (error) {
-        console.error("Error fetching transaction details:", error);
-      }
-    };
+  const [txn, setTxn] = React.useState(null);
+
+  React.useEffect(() => {
+    async function fetchTransaction() {
+      const response = await fetch(`${API_URL}/txn/${txnId}`);
+      const data = await response.json();
+      setTxn(data);
+    }
     fetchTransaction();
-  }, [id]);
+  }, [txnId]);
 
   return (
     <div>
-      <h2>Transaction Details</h2>
-      <p>Date: {formatDate(txn.date)}</p>
-      <p>Wallet: {txn.wallet}</p>
-      <p>Expense: {txn.expense}</p>
-      <p>Amount: {txn.amount}</p>
-      <button onClick={() => navigate(-1)}>Back</button>
+      {txn && (
+        <>
+          <h2>Transaction Details</h2>
+          <ul>
+            <li>Date: {formatDate(txn.date)}</li>
+            <li>Wallet: {txn.wallet}</li>
+            <li>Expense: {txn.expense}</li>
+            <li>Amount: {txn.amount}</li>
+          </ul>
+        </>
+      )}
     </div>
-  )
-}
-
-
+  );
+};
 
 export default FinanceTransactionDetails;
-

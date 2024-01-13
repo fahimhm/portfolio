@@ -17,12 +17,10 @@ const router = createBrowserRouter([
   {
     path: "finance_tracker",
     element: <FinanceTracker />,
-    children: [
-      {
-        path:"txn/:id",
-        element: <FinanceTransactionDetails />
-      },
-    ],
+  },
+  {
+    path: "txn/:txnId",
+    element: <FinanceTransactionDetails />,
   },
 ]);
 
