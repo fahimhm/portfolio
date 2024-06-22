@@ -6,7 +6,7 @@ require('dotenv').config({
 });
 const cors = require('cors');
 
-const Txn = require('./models/Txn');
+const Txn = require('./models/Txn').default;
 
 const app = express();
 
