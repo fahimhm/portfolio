@@ -126,6 +126,13 @@ export const bodyContent = [
     id: "project",
     content: [
       {
+        title: "Engineering Process: Maintenance Management",
+        desc: "In this project I helped to build system to manages and automates maintenance a company's assets.",
+        skillTag: ["MongoDB", "Express JS", "React JS", "Node JS", "MERN Stack"],
+        imageUrl: fahim_portfolio,
+        pageUrl: "/maintenance_management",
+      },
+      {
         title: "Dummy: Personal Finance Tracker",
         desc: "In this project I tried to implement basic CRUD, express JS, node JS and MongoDB.",
         skillTag: ["MongoDB", "Express JS", "React JS", "Node JS", "MERN Stack"],

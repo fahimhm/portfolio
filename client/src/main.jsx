@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import { FirstProject, FinanceTracker, FinanceTransactionDetails } from "./pages"
+import { FirstProject, FinanceTracker, FinanceTransactionDetails, LoginPage, RegisterPage } from "./pages"
 import "./index.css";
 import { createBrowserRouter, RouterProvider, BrowserRouter as Router, Routes } from "react-router-dom";
 
@@ -21,6 +21,14 @@ const router = createBrowserRouter([
   {
     path: "txn/:txnId",
     element: <FinanceTransactionDetails />,
+  },
+  {
+    path: "maintenance_management",
+    element: <LoginPage />,
+  },
+  {
+    path: "register_page",
+    element: <RegisterPage />,
   },
 ]);
 
