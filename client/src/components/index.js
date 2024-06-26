@@ -6,6 +6,8 @@ import Footer from './Footer';
 import Experience from './Experience';
 import Project from './Project';
 import FooterMain from './FooterMain';
+import FormInput from './FormInput';
+import FormButton from './FormButton';
 
 const formatDate = (originalDate) => {
   const date = new Date(originalDate);
@@ -26,4 +28,6 @@ export {
 	Project,
 	FooterMain,
 	formatDate,
+	FormInput,
+	FormButton
 };
