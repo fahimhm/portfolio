@@ -1,4 +1,4 @@
-import { default as mongoose } from "mongoose";
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 // const ObjectId = mongoose.Types.ObjectId;
@@ -13,4 +13,4 @@ const TxnSchema = new Schema({
 
 const TxnModel = mongoose.model('Txn', TxnSchema);
 
-export default TxnModel;
+module.exports = TxnModel;
