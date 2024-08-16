@@ -1,16 +1,34 @@
 import { useState } from 'react';
 import FormInput from '../../components/FormInput';
 import FormButton from '../../components/FormButton';
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     email: '',
     username: '',
     password: '',
+    confirmPassword: '',
   })
 
-  const registerUser = (e) => {
+  const registerUser = async (e) => {
     e.preventDefault()
+    const { email, username, password, confirmPassword } = data;
+    try {
+      const {data} = await axios.post('/register_page', { email, username, password, confirmPassword });
+      if (data.error) {
+        toast.error(data.error);
+      } else {
+        setData({})
+        toast.success('Register Successful. Welcome!')
+        navigate('/maintenance_management')
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const [showPassword, setShowPassword] = useState(false);

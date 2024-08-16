@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import FormInput from '../../components/FormInput';
 import FormButton from '../../components/FormButton';
+import axios from 'axios';
 
 const LoginPage = () => {
   const [data, setData] = useState({
@@ -10,6 +11,7 @@ const LoginPage = () => {
 
   const loginUser = (e) => {
     e.preventDefault()
+    axios.get('/')
   };
 
   const [showPassword, setShowPassword] = useState(false);

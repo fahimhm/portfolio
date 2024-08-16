@@ -4,6 +4,11 @@ import App from "./App.jsx";
 import { FirstProject, FinanceTracker, FinanceTransactionDetails, LoginPage, RegisterPage } from "./pages"
 import "./index.css";
 import { createBrowserRouter, RouterProvider, BrowserRouter as Router, Routes } from "react-router-dom";
+import axios from "axios";
+import { Toaster } from "react-hot-toast";
+
+axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.withCredentials = true;
 
 const router = createBrowserRouter([
   {
@@ -34,6 +39,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <Toaster position="bottom-right" toastOptions={{duration: 2000}} />
     <RouterProvider router={router}>
       <Router>
         <Routes>
